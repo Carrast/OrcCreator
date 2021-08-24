@@ -29,13 +29,18 @@ int main()
     int orc_intelligence;
     int orc_charisma;
     
+    std::vector<Orc> array_orcs;
+
     std::string user_choice;
     char real_choice;
 
+    // fight
+    int user_fight_choice_0 = 0;
+    int user_fight_choice_1 = 0;
+    int health_fighter0 = 0;
+    int health_fighter1 = 0;
     int damage = 0;
-    srand(time(0));
-
-    std::vector<Orc> array_orcs;
+    srand(int(time(0)));
 
     do
     {
@@ -106,7 +111,7 @@ int main()
         {
             std::cout << "Number of orcs: " << number_orcs << ".\n";
 
-            for (int i = 0; i < array_orcs.size(); i++)
+            for (std::size_t i = 0; i < array_orcs.size(); i++)
             {
                 std::cout << "Name:\t\t\t" << array_orcs[i].its_name << "\n";
                 std::cout << "Strength:\t\t" << array_orcs[i].its_strength << "\n";
@@ -137,24 +142,27 @@ int main()
 
                 do
                 {
-                    // 1
+                    health_fighter0 = array_orcs[0].its_health;
+                    health_fighter1 = array_orcs[1].its_health;
+                    
+                    // round 1
                     std::cout << array_orcs[0].its_name << " is attacking. " << array_orcs[0].its_name << " is swinging his sword, doing ";
                     damage = rand()%6 + 1 + (std::max(10, array_orcs[0].its_strength) - 10);
-                    std::cout << damage << " damage!\n";
+                    std::cout << (std::max(10, array_orcs[0].its_strength) - 10)  << " + " << (rand() % 6 + 1) << " = "<< damage << " damage!\n";
                     array_orcs[1].its_health -= damage;
-                    std::cout << array_orcs[1].its_name << "'s health is " << array_orcs[1].its_health << ".\n";
+                    std::cout << array_orcs[1].its_name << "'s health is [" << health_fighter1  << "/" << array_orcs[1].its_health << "].\n";
 
                     if (array_orcs[1].its_health < 1) {
                         std::cout << array_orcs[0].its_name << " has slain " << array_orcs[1].its_name  << "!\n";
                         break;
                     }
 
-                    // 2
+                    // round 2
                     std::cout << array_orcs[1].its_name << " is attacking. " << array_orcs[1].its_name << " is swinging his sword, doing ";
                     damage = rand() % 6 + 1 + (std::max(10, array_orcs[1].its_strength) - 10);
-                    std::cout << damage << " damage.\n";
+                    std::cout << (std::max(10, array_orcs[1].its_strength) - 10) << " + " << (rand() % 6 + 1) << " = " << damage << " damage!\n";
                     array_orcs[0].its_health -= damage;
-                    std::cout << array_orcs[0].its_name << "'s health is " << array_orcs[0].its_health << ".\n";
+                    std::cout << array_orcs[0].its_name << "'s health is [" << health_fighter0 << "/" << array_orcs[0].its_health << "].\n";
                     if (array_orcs[0].its_health < 1) {
                         std::cout << array_orcs[1].its_name << " has slain " << array_orcs[0].its_name << "!\n";
                         
