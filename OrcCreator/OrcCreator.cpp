@@ -18,8 +18,10 @@ void ListOrcs(int number_orcs);
 
 int main()
 {
-    std::string random_name1 = "Uglukk";
-    std::string random_name2 = "Abzlug";
+    // random orc names
+    std::string random_orc_names[10] = { "Ugluk", "Ugburz", "Abagog", "Uhfark", "Zabagug", "Abzlug", "Cuculuk", "Ragnaork", "Krazmug", "Frahkuk" };     
+    std::string random_name1;
+    std::string random_name2;
 
     int number_orcs = 0;
     std::string orc_name;
@@ -47,7 +49,7 @@ int main()
     {
         WelcomeText();
         ShowOptions();
-        std::cout << "User choice:\t\t - ";
+        std::cout << "\nUser choice:\t\t - ";
         std::cin >> user_choice;
         real_choice = user_choice[0];
         std::cout << "\n";
@@ -91,6 +93,7 @@ int main()
         } if (real_choice == 'b')   // Create 2 random orcs
         {
             // 1
+            random_name1 = random_orc_names[rand() % 10];
             Orc random_name1(random_name1, (rand()%15 + 6), (rand()%15 + 6), (rand()%15 + 6));
             random_name1.SetIntelligence(rand()%15 + 6);
             random_name1.SetCharisma(rand() % 15 + 6);
@@ -98,6 +101,7 @@ int main()
             array_orcs.push_back(random_name1);
 
             // 2
+            random_name2 = random_orc_names[rand() % 10];
             Orc random_name2(random_name2, (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6));
             random_name2.SetIntelligence(rand() % 15 + 6);
             random_name2.SetCharisma(rand() % 15 + 6);
