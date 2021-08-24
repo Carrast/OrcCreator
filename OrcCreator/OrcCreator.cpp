@@ -67,17 +67,17 @@ int main()
             std::cout << "Dexterity:\t\t";
             std::cin >> orc_dexterity;
             orc_dexterity= std::min(std::max(5, orc_dexterity), 20);
-            std::cout << "Endurance\t\t";
+            std::cout << "Endurance:\t\t";
             std::cin >> orc_endurance;
             orc_endurance = std::min(std::max(5, orc_endurance), 20);
-            std::cout << "Intelligence\t\t";
+            std::cout << "Intelligence:\t\t";
             std::cin >> orc_intelligence;
             orc_intelligence = std::min(std::max(5, orc_intelligence), 20);
-            std::cout << "Charisma\t\t";
+            std::cout << "Charisma:\t\t";
             std::cin >> orc_charisma;
             orc_charisma = std::min(std::max(5, orc_charisma), 20);
 
-            std::cout << "\n\nOrc with the name " << orc_name << " is born!\n";
+            std::cout << "\nOrc with the name " << orc_name << " is born!\n";
 
             Orc orc_name(orc_name, orc_strength, orc_dexterity, orc_endurance);
             orc_name.SetIntelligence(orc_intelligence);
@@ -121,7 +121,7 @@ int main()
             for (std::size_t i = 0; i < array_orcs.size(); i++)
             {
                 std::cout << "Name:\t\t\t" << array_orcs[i].its_name << "\n";
-                std::cout << "Number of kills:\t" << array_orcs[i].its_kills << "\n";
+                std::cout << "Number of kills:\t" << array_orcs[i].its_kills << "\n\n";
                 std::cout << "Strength:\t\t" << array_orcs[i].its_strength << "\n";
                 std::cout << "Dexterity:\t\t" << array_orcs[i].its_dexterity << "\n";
                 std::cout << "Endurance:\t\t" << array_orcs[i].its_endurance << "\n";
@@ -147,9 +147,9 @@ int main()
             else
             {
                 std::cout << "\tLET THE FIGHT BEGIN!\n\n";
-                std::cout << "Choose you warriors!\n";
+                std::cout << "\tChoose you warriors!\n";
                 
-                std::cout << array_orcs[0].its_name << " VS " << array_orcs[1].its_name << "\n\n";
+                std::cout << "\t" << array_orcs[0].its_name << " VS " << array_orcs[1].its_name << "\n\n";
 
                 health_fighter0 = array_orcs[0].its_health;
                 health_fighter1 = array_orcs[1].its_health;
