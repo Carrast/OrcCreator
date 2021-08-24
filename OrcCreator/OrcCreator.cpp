@@ -173,6 +173,7 @@ int main()
                         std::cout << d6 << " extra damage!\n";
                         array_orcs[1].its_health -= damage;
                         array_orcs[0].its_mana -= damage;
+                        if (array_orcs[0].its_mana < 0) { array_orcs[0].its_mana = 0; }
                     }
 
                     // death
@@ -202,6 +203,7 @@ int main()
                         std::cout << d6 << " extra damage!\n";
                         array_orcs[0].its_health -= damage;
                         array_orcs[1].its_mana -= damage;
+                        if (array_orcs[1].its_mana < 0) { array_orcs[0].its_mana = 0; }
                     }
 
                     // death
