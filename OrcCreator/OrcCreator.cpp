@@ -192,7 +192,7 @@ void WelcomeText() {
 void ShowOptions() {
     std::cout << "Choose from the options below:\n\n";
     std::cout << "Create new orc\t\t - a\n";
-    std::cout << "Create 2 randoms\t\ - b\n";
+    std::cout << "Create 2 randoms\t - b\n";
     std::cout << "List existing orcs\t - c\n";
     std::cout << "Let them fight!\t\t - d\n";
     std::cout << "Exit\t\t\t - x\n";
