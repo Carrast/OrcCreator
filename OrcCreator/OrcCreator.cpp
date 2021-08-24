@@ -142,11 +142,11 @@ int main()
                 std::cout << "\tLET THE FIGHT BEGIN!\n\n";
                 std::cout << array_orcs[0].its_name << " VS " << array_orcs[1].its_name << "\n\n";
 
+                health_fighter0 = array_orcs[0].its_health;
+                health_fighter1 = array_orcs[1].its_health;
+
                 do
                 {
-                    health_fighter0 = array_orcs[0].its_health;
-                    health_fighter1 = array_orcs[1].its_health;
-                    
                     // round 1
                     std::cout << array_orcs[0].its_name << " is attacking. " << array_orcs[0].its_name << " is swinging his sword, doing ";
                     damage = rand()%6 + 1 + (std::max(10, array_orcs[0].its_strength) - 10);
