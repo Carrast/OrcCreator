@@ -8,6 +8,8 @@ public:
 	int its_dexterity = 0;
 	int its_endurance = 0;
 	int its_health = 0;
+	int its_mana = 20;
+	int its_kills = 0;
 
 	// constructor - destructor
 	Orc(std::string name, int strength, int dexterity, int endurance);
@@ -24,9 +26,6 @@ public:
 private:
 	int its_intelligence = 0;
 	int its_charisma = 0;
-
-protected:
-	int its_mana = 20;
 };
 
 // constructor
@@ -42,7 +41,7 @@ Orc::Orc(std::string name, int strength, int dexterity, int endurance) {
 
 // destructor
 Orc::~Orc() {
-
+	std::cout << "His body is destroyed.\n";
 }
 
 void Orc::SetIntelligence(int intelligence) {

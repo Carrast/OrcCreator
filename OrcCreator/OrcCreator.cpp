@@ -35,10 +35,11 @@ int main()
     char real_choice;
 
     // fight
-    int user_fight_choice_0 = 0;
-    int user_fight_choice_1 = 0;
+    int user_fighter_choice_0 = 0;
+    int user_fighter_choice_1 = 0;
     int health_fighter0 = 0;
     int health_fighter1 = 0;
+    int d6 = 0;
     int damage = 0;
     srand(int(time(0)));
 
@@ -46,7 +47,7 @@ int main()
     {
         WelcomeText();
         ShowOptions();
-        std::cout << "User choice:\t\t";
+        std::cout << "User choice:\t\t - ";
         std::cin >> user_choice;
         real_choice = user_choice[0];
         std::cout << "\n";
@@ -116,12 +117,14 @@ int main()
             for (std::size_t i = 0; i < array_orcs.size(); i++)
             {
                 std::cout << "Name:\t\t\t" << array_orcs[i].its_name << "\n";
+                std::cout << "Number of kills:\t" << array_orcs[i].its_kills << "\n";
                 std::cout << "Strength:\t\t" << array_orcs[i].its_strength << "\n";
                 std::cout << "Dexterity:\t\t" << array_orcs[i].its_dexterity << "\n";
                 std::cout << "Endurance:\t\t" << array_orcs[i].its_endurance << "\n";
                 std::cout << "Intellect:\t\t" << array_orcs[i].GetIntelligence() << "\n";
-                std::cout << "Charisma:\t\t" << array_orcs[i].GetCharisma() << "\n";
-                std::cout << "Hit points:\t\t[" << array_orcs[i].its_health << "/" << array_orcs[i].its_health << "]\n\n";
+                std::cout << "Charisma:\t\t" << array_orcs[i].GetCharisma() << "\n\n";
+                std::cout << "Hit points:\t\t[" << array_orcs[i].its_health << "/" << array_orcs[i].its_health << "]\n";
+                std::cout << "Mana:\t\t\t[" << 20 << "/" << array_orcs[i].its_mana << "]\n\n";
             }
 
             system("pause");
@@ -140,6 +143,8 @@ int main()
             else
             {
                 std::cout << "\tLET THE FIGHT BEGIN!\n\n";
+                std::cout << "Choose you warriors!\n";
+                
                 std::cout << array_orcs[0].its_name << " VS " << array_orcs[1].its_name << "\n\n";
 
                 health_fighter0 = array_orcs[0].its_health;
@@ -147,29 +152,64 @@ int main()
 
                 do
                 {
-                    // round 1
+                    // orc 0 attacks
                     std::cout << array_orcs[0].its_name << " is attacking. " << array_orcs[0].its_name << " is swinging his sword, doing ";
-                    damage = rand()%6 + 1 + (std::max(10, array_orcs[0].its_strength) - 10);
-                    std::cout << (std::max(10, array_orcs[0].its_strength) - 10)  << " + " << (rand() % 6 + 1) << " = "<< damage << " damage!\n";
+                    d6 = rand() % 6 + 1;
+                    damage = (std::max(10, array_orcs[0].its_strength) - 10) + d6;
+                    std::cout << (std::max(10, array_orcs[0].its_strength) - 10)  << " + " << d6 << " = "<< damage << " damage!\n";
                     array_orcs[1].its_health -= damage;
                     std::cout << array_orcs[1].its_name << "'s health is [" << health_fighter1  << "/" << array_orcs[1].its_health << "].\n";
 
+                    // magic
+                    if (array_orcs[0].GetCharisma() > 16 && array_orcs[0].its_mana > 0)
+                    {
+                        std::cout << array_orcs[0].its_name << " is using his magic skills, doing ";
+                        d6 = rand() % 6 + 1;
+                        damage = d6;
+                        std::cout << d6 << " extra damage!\n";
+                        array_orcs[1].its_health -= damage;
+                        array_orcs[0].its_mana -= damage;
+                    }
+
+                    // death
                     if (array_orcs[1].its_health < 1) {
                         std::cout << array_orcs[0].its_name << " has slain " << array_orcs[1].its_name  << "!\n";
+                        array_orcs[0].its_health = array_orcs[0].its_endurance * 3;
+                        array_orcs[0].its_kills++;
+                        array_orcs.erase(array_orcs.begin()+1);
+                        number_orcs--;
                         break;
                     }
 
-                    // round 2
+                    // orc 1 attacks
                     std::cout << array_orcs[1].its_name << " is attacking. " << array_orcs[1].its_name << " is swinging his sword, doing ";
-                    damage = rand() % 6 + 1 + (std::max(10, array_orcs[1].its_strength) - 10);
+                    d6 = rand() % 6 + 1;
+                    damage = (std::max(10, array_orcs[1].its_strength) - 10) + d6;
                     std::cout << (std::max(10, array_orcs[1].its_strength) - 10) << " + " << (rand() % 6 + 1) << " = " << damage << " damage!\n";
                     array_orcs[0].its_health -= damage;
                     std::cout << array_orcs[0].its_name << "'s health is [" << health_fighter0 << "/" << array_orcs[0].its_health << "].\n";
+
+                    // magic
+                    if (array_orcs[1].GetCharisma() > 16 && array_orcs[1].its_mana > 0)
+                    {
+                        std::cout << array_orcs[1].its_name << " is using his magic skills, doing ";
+                        d6 = rand() % 6 + 1;
+                        damage = d6;
+                        std::cout << d6 << " extra damage!\n";
+                        array_orcs[0].its_health -= damage;
+                        array_orcs[1].its_mana -= damage;
+                    }
+
+                    // death
                     if (array_orcs[0].its_health < 1) {
                         std::cout << array_orcs[1].its_name << " has slain " << array_orcs[0].its_name << "!\n";
-                        
+                        array_orcs[1].its_health = array_orcs[1].its_endurance * 3;
+                        array_orcs[1].its_kills++;
+                        array_orcs.erase(array_orcs.begin() + 0);
+                        number_orcs--;
                         break;
                     }
+
                 } while (array_orcs[0].its_health > 0 && array_orcs[1].its_health > 0);
 
                 system("pause");
