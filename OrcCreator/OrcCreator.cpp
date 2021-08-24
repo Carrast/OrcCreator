@@ -1,5 +1,11 @@
 // OrcCreator.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+// TODO
+// -2 random ork létrehozásakor miért fut le a destruktor?
+// -dexterity döntse el, hogy melyik ork kezd, van erre frappáns, jó megoldás?
+//        std::swap(vector[position],vector[otherPosition]);
+// -hogyan lehetne frappánsan létrehozni a CreateOrc / ListOrc funkciókat?
+// -hogyan takarítsunk magunk után a harc után? kell e egyáltalán?
+// - user válassza ki a 2 harcost a sok közül (ha több van mint 2)
 
 #include <iostream>
 #include <vector>
@@ -152,6 +158,7 @@ int main()
                 
                 std::cout << "\t" << array_orcs[0].its_name << " VS " << array_orcs[1].its_name << "\n\n";
 
+                // TODO     std::swap(array_orcs[0], array_orcs[1]);
                 health_fighter0 = array_orcs[0].its_health;
                 health_fighter1 = array_orcs[1].its_health;
 
