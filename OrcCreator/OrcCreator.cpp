@@ -54,7 +54,9 @@ int main()
         if (real_choice == 'a') // Create orc
         {
             std::cout << "Give name of the orc: ";
-            std::cin >> orc_name;
+            std::cin.ignore();
+            std::getline(std::cin, orc_name);
+            //std::cin >> orc_name;
             std::cout << "\nValues must be between [5-20]!";
             std::cout << "\nStrength:\t\t";
             std::cin >> orc_strength;
