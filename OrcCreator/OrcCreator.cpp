@@ -1,6 +1,6 @@
 // OrcCreator.cpp : This file contains the 'main' function. Program execution begins and ends there.
 // TODO
-// -hogyan lehetne frappánsan létrehozni a CreateOrc / ListOrc funkciókat?
+// -hogyan lehetne frappánsan létrehozni a CreateOrc funkciót?
 // -user válassza ki a 2 harcost a sok közül (ha több van mint 2)
 
 #include <iostream>
@@ -16,7 +16,7 @@ void ShowOptions();
 
 // TODO
 void CreateOrc(const std::string& name, int strength, int endurance, int intelligence, int charisma);
-void ListOrcs(int number_orcs);
+void ListOrcs(int number_orcs, std::vector<Orc>orcs);
 
 int main()
 {
@@ -120,23 +120,7 @@ int main()
 
         } if (real_choice == 'c')   // List orcs
         {
-            std::cout << "Number of orcs: " << number_orcs << "\n";
-
-            for (std::size_t i = 0; i < array_orcs.size(); i++)
-            {
-                std::cout << "Name:\t\t\t" << array_orcs[i].its_name << "\n";
-                std::cout << "Number of kills:\t" << array_orcs[i].its_kills << "\n\n";
-                std::cout << "Strength:\t\t" << array_orcs[i].its_strength << "\n";
-                std::cout << "Dexterity:\t\t" << array_orcs[i].its_dexterity << "\n";
-                std::cout << "Endurance:\t\t" << array_orcs[i].its_endurance << "\n";
-                std::cout << "Intellect:\t\t" << array_orcs[i].GetIntelligence() << "\n";
-                std::cout << "Charisma:\t\t" << array_orcs[i].GetCharisma() << "\n\n";
-                std::cout << "Hit points:\t\t[" << array_orcs[i].its_health << "/" << array_orcs[i].its_health << "]\n";
-                std::cout << "Mana:\t\t\t[" << 20 << "/" << array_orcs[i].its_mana << "]\n\n";
-            }
-
-            system("pause");
-            system("CLS");
+            ListOrcs(number_orcs, array_orcs);
             continue;
 
         } if (real_choice == 'd')   // let them fight!
@@ -275,6 +259,23 @@ void CreateOrc(const std::string& name, int strength, int endurance, int intelli
 
 }
 
-void ListOrcs(int number_orcs) {
+void ListOrcs(int number_orcs, std::vector<Orc>array_orcs) {
 
+    std::cout << "Number of orcs: " << number_orcs << "\n";
+
+    for (std::size_t i = 0; i < array_orcs.size(); i++)
+    {
+        std::cout << "Name:\t\t\t" << array_orcs[i].its_name << "\n";
+        std::cout << "Number of kills:\t" << array_orcs[i].its_kills << "\n\n";
+        std::cout << "Strength:\t\t" << array_orcs[i].its_strength << "\n";
+        std::cout << "Dexterity:\t\t" << array_orcs[i].its_dexterity << "\n";
+        std::cout << "Endurance:\t\t" << array_orcs[i].its_endurance << "\n";
+        std::cout << "Intellect:\t\t" << array_orcs[i].GetIntelligence() << "\n";
+        std::cout << "Charisma:\t\t" << array_orcs[i].GetCharisma() << "\n\n";
+        std::cout << "Hit points:\t\t[" << array_orcs[i].its_health << "/" << array_orcs[i].its_health << "]\n";
+        std::cout << "Mana:\t\t\t[" << 20 << "/" << array_orcs[i].its_mana << "]\n\n";
+    }
+
+    system("pause");
+    system("CLS");
 }
