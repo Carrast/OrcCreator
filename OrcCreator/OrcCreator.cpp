@@ -1,11 +1,7 @@
 // OrcCreator.cpp : This file contains the 'main' function. Program execution begins and ends there.
 // TODO
-// -2 random ork létrehozásakor miért fut le a destruktor?
-// -dexterity döntse el, hogy melyik ork kezd, van erre frappáns, jó megoldás?
-//        std::swap(vector[position],vector[otherPosition]);
 // -hogyan lehetne frappánsan létrehozni a CreateOrc / ListOrc funkciókat?
-// -hogyan takarítsunk magunk után a harc után? kell e egyáltalán?
-// - user válassza ki a 2 harcost a sok közül (ha több van mint 2)
+// -user válassza ki a 2 harcost a sok közül (ha több van mint 2)
 
 #include <iostream>
 #include <vector>
@@ -50,6 +46,7 @@ int main()
     int health_fighter1 = 0;
     int d6 = 0;
     int damage = 0;
+    int magic_damage = 0;
     srand(int(time(0)));
 
     do
@@ -123,7 +120,7 @@ int main()
 
         } if (real_choice == 'c')   // List orcs
         {
-            std::cout << "Number of orcs: " << number_orcs << ".\n";
+            std::cout << "Number of orcs: " << number_orcs << "\n";
 
             for (std::size_t i = 0; i < array_orcs.size(); i++)
             {
@@ -158,31 +155,43 @@ int main()
                 
                 std::cout << "\t" << array_orcs[0].its_name << " VS " << array_orcs[1].its_name << "\n\n";
 
-                // TODO     std::swap(array_orcs[0], array_orcs[1]);
+                // who strikes first
+                if (array_orcs[0].its_dexterity > array_orcs[1].its_dexterity)
+                {
+                    std::cout << array_orcs[0].its_name << " is quicker, he beings the fight!\n";
+                }
+                else
+                {
+                    std::cout << array_orcs[1].its_name << " is quicker, he beings the fight!\n";
+                    std::swap(array_orcs[0], array_orcs[1]);
+                }
+
+                // max health pool
                 health_fighter0 = array_orcs[0].its_health;
                 health_fighter1 = array_orcs[1].its_health;
 
                 do
                 {
-                    // orc 0 attacks
+                    // orc 0 attack
                     std::cout << array_orcs[0].its_name << " is attacking. " << array_orcs[0].its_name << " is swinging his sword, doing ";
                     d6 = rand() % 6 + 1;
-                    damage = (std::max(10, array_orcs[0].its_strength) - 10) + d6;
-                    std::cout << (std::max(10, array_orcs[0].its_strength) - 10)  << " + " << d6 << " = "<< damage << " damage!\n";
+                    damage = (std::max(10, array_orcs[0].its_strength) - 10) + d6 + array_orcs[0].its_kills;
+                    std::cout << (std::max(10, array_orcs[0].its_strength) - 10)  << " + " << d6 << " + " << array_orcs[0].its_kills << " = "<< damage << " damage!\n";
                     array_orcs[1].its_health -= damage;
-                    std::cout << array_orcs[1].its_name << "'s health is [" << health_fighter1  << "/" << array_orcs[1].its_health << "].\n";
-
-                    // magic
+ 
+                    // orc 0 magic
                     if (array_orcs[0].GetCharisma() > 16 && array_orcs[0].its_mana > 0)
                     {
                         std::cout << array_orcs[0].its_name << " is using his magic skills, doing ";
                         d6 = rand() % 6 + 1;
-                        damage = d6;
+                        magic_damage = d6;
                         std::cout << d6 << " extra damage!\n";
-                        array_orcs[1].its_health -= damage;
-                        array_orcs[0].its_mana -= damage;
+                        array_orcs[1].its_health -= magic_damage;
+                        array_orcs[0].its_mana -= magic_damage;
+
                         if (array_orcs[0].its_mana < 0) { array_orcs[0].its_mana = 0; }
                     }
+                    std::cout << array_orcs[1].its_name << "'s health is [" << health_fighter1 << "/" << array_orcs[1].its_health << "].\n";
 
                     // death
                     if (array_orcs[1].its_health < 1) {
@@ -194,25 +203,25 @@ int main()
                         break;
                     }
 
-                    // orc 1 attacks
+                    // orc 1 attack
                     std::cout << array_orcs[1].its_name << " is attacking. " << array_orcs[1].its_name << " is swinging his sword, doing ";
                     d6 = rand() % 6 + 1;
-                    damage = (std::max(10, array_orcs[1].its_strength) - 10) + d6;
-                    std::cout << (std::max(10, array_orcs[1].its_strength) - 10) << " + " << (rand() % 6 + 1) << " = " << damage << " damage!\n";
+                    damage = (std::max(10, array_orcs[1].its_strength) - 10) + d6 + array_orcs[1].its_kills;
+                    std::cout << (std::max(10, array_orcs[1].its_strength) - 10) << " + " << d6 << " + " << array_orcs[1].its_kills << " = " << damage << " damage!\n";
                     array_orcs[0].its_health -= damage;
-                    std::cout << array_orcs[0].its_name << "'s health is [" << health_fighter0 << "/" << array_orcs[0].its_health << "].\n";
-
-                    // magic
+ 
+                    // orc 1 magic
                     if (array_orcs[1].GetCharisma() > 16 && array_orcs[1].its_mana > 0)
                     {
                         std::cout << array_orcs[1].its_name << " is using his magic skills, doing ";
                         d6 = rand() % 6 + 1;
-                        damage = d6;
+                        magic_damage = d6;
                         std::cout << d6 << " extra damage!\n";
-                        array_orcs[0].its_health -= damage;
-                        array_orcs[1].its_mana -= damage;
+                        array_orcs[0].its_health -= magic_damage;
+                        array_orcs[1].its_mana -= magic_damage;
                         if (array_orcs[1].its_mana < 0) { array_orcs[0].its_mana = 0; }
                     }
+                    std::cout << array_orcs[0].its_name << "'s health is [" << health_fighter0 << "/" << array_orcs[0].its_health << "].\n";
 
                     // death
                     if (array_orcs[0].its_health < 1) {
@@ -269,14 +278,3 @@ void CreateOrc(const std::string& name, int strength, int endurance, int intelli
 void ListOrcs(int number_orcs) {
 
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

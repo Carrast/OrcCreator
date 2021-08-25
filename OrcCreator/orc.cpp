@@ -1,6 +1,7 @@
 #include "orc.h"
 #include <iostream>
 
+// constructor
 Orc::Orc(const std::string& name, int strength, int dexterity, int endurance) {
 	its_name = name;
 	its_strength = strength;
