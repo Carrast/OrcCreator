@@ -86,12 +86,12 @@ int main()
 
             std::cout << "\nOrc with the name " << orc_name << " is born!\n";
 
-            Orc orc_name(orc_name, orc_strength, orc_dexterity, orc_endurance);
-            orc_name.SetIntelligence(orc_intelligence);
-            orc_name.SetCharisma(orc_charisma);
+            Orc orc(orc_name, orc_strength, orc_dexterity, orc_endurance);
+            orc.SetIntelligence(orc_intelligence);
+            orc.SetCharisma(orc_charisma);
             number_orcs++;
-            array_orcs.push_back(orc_name);
-            orc_name.Roar(orc_intelligence, orc_charisma);
+            array_orcs.push_back(orc);
+            orc.Roar(orc_intelligence, orc_charisma);
 
             system("pause");
             system("CLS");
@@ -101,19 +101,19 @@ int main()
         {
             // 1
             random_name1 = random_orc_names_start[rand() % 10] + random_orc_names_end[rand() % 10];
-            Orc random_name1(random_name1, (rand()%15 + 6), (rand()%15 + 6), (rand()%15 + 6));
-            random_name1.SetIntelligence(rand()%15 + 6);
-            random_name1.SetCharisma(rand() % 15 + 6);
+            Orc random_orc1(random_name1, (rand()%15 + 6), (rand()%15 + 6), (rand()%15 + 6));
+            random_orc1.SetIntelligence(rand()%15 + 6);
+            random_orc1.SetCharisma(rand() % 15 + 6);
             number_orcs++;
-            array_orcs.push_back(random_name1);
+            array_orcs.push_back(random_orc1);
 
             // 2
             random_name2 = random_orc_names_start[rand() % 10] + random_orc_names_end[rand() % 10];
-            Orc random_name2(random_name2, (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6));
-            random_name2.SetIntelligence(rand() % 15 + 6);
-            random_name2.SetCharisma(rand() % 15 + 6);
+            Orc random_orc2(random_name2, (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6));
+            random_orc2.SetIntelligence(rand() % 15 + 6);
+            random_orc2.SetCharisma(rand() % 15 + 6);
             number_orcs++;
-            array_orcs.push_back(random_name2);
+            array_orcs.push_back(random_orc2);
 
             std::cout << "Two random orcs have been created!\n\n";
 
@@ -262,7 +262,7 @@ void ShowOptions() {
     std::cout << "Exit\t\t\t - x\n";
 }
 
-void CreateOrc(std::string name, int strength, int endurance, int intelligence, int charisma) {
+void CreateOrc(const std::string& name, int strength, int endurance, int intelligence, int charisma) {
 
 }
 
