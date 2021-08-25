@@ -1,7 +1,9 @@
-// OrcCreator.cpp : This file contains the 'main' function. Program execution begins and ends there.
+// OrcCreator.cpp
+// v1.0
+// by Carrast
+// 
 // TODO
-// -hogyan lehetne frappánsan létrehozni a CreateOrc funkciót?
-// -user válassza ki a 2 harcost a sok közül (ha több van mint 2)
+// -let the user decide which orc fights (if there more than two ofc)
 
 #include <iostream>
 #include <vector>
@@ -15,7 +17,7 @@ void WelcomeText();
 void ShowOptions();
 
 // TODO
-void CreateOrc(const std::string& name, int strength, int endurance, int intelligence, int charisma);
+Orc CreateOrc(const std::string& name, int strength, int dexterity, int endurance, int intelligence, int charisma);
 void ListOrcs(int number_orcs, std::vector<Orc>orcs);
 
 int main()
@@ -82,13 +84,9 @@ int main()
             orc_charisma = std::min(std::max(5, orc_charisma), 20);
 
             std::cout << "\nOrc with the name " << orc_name << " is born!\n";
-
-            Orc orc(orc_name, orc_strength, orc_dexterity, orc_endurance);
-            orc.SetIntelligence(orc_intelligence);
-            orc.SetCharisma(orc_charisma);
             number_orcs++;
-            array_orcs.push_back(orc);
-            orc.Roar(orc_intelligence, orc_charisma);
+            // create orc with function call
+            array_orcs.push_back(CreateOrc(orc_name, orc_strength, orc_dexterity, orc_endurance, orc_intelligence, orc_charisma));
 
             system("pause");
             system("CLS");
@@ -255,8 +253,12 @@ void ShowOptions() {
     std::cout << "Exit\t\t\t - x\n";
 }
 
-void CreateOrc(const std::string& name, int strength, int endurance, int intelligence, int charisma) {
-
+Orc CreateOrc(const std::string& name, int strength, int dexterity, int endurance, int intelligence, int charisma) {
+    Orc orc(name, strength, dexterity, endurance);
+    orc.SetIntelligence(intelligence);
+    orc.SetCharisma(charisma);
+    orc.Roar(intelligence, charisma);
+    return orc;
 }
 
 void ListOrcs(int number_orcs, std::vector<Orc>array_orcs) {
