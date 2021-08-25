@@ -19,13 +19,13 @@ void WelcomeText();
 void ShowOptions();
 
 // TODO
-void CreateOrc(std::string name, int strength, int endurance, int intelligence, int charisma);
+void CreateOrc(const std::string& name, int strength, int endurance, int intelligence, int charisma);
 void ListOrcs(int number_orcs);
 
 int main()
 {
     // random orc names
-    std::string random_orc_names_start[10] = { "Ug", "Ug", "Aba", "Uh", "Zaba", "Abz", "Cucu", "Ragna", "Kraz", "Frah" };
+    std::string random_orc_names_start[10] = { "Ugh", "Ug", "Aba", "Uh", "Zaba", "Abz", "Cucu", "Ragna", "Kraz", "Frah" };
     std::string random_orc_names_end[10] = { "luk", "burz", "gog", "fark", "gug", "lug", "luk", "ork", "mug", "kuk" };
     std::string random_name1;
     std::string random_name2;
@@ -66,7 +66,7 @@ int main()
             std::cout << "Give name of the orc: ";
             std::cin.ignore();
             std::getline(std::cin, orc_name);
-            //std::cin >> orc_name;
+
             std::cout << "\nValues must be between [5-20]!";
             std::cout << "\nStrength:\t\t";
             std::cin >> orc_strength;
