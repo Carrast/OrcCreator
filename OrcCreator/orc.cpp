@@ -17,6 +17,17 @@ Orc::~Orc() {
 	std::cout << "His body is destroyed.\n";
 }
 
+// copy constructor
+Orc::Orc(const Orc& other_orc) {
+	its_name = other_orc.its_name;
+	its_strength = other_orc.its_strength;
+	its_dexterity = other_orc.its_dexterity;
+	its_endurance = other_orc.its_endurance;
+
+	// health
+	its_health = other_orc.its_endurance * 3;
+}
+
 void Orc::SetIntelligence(int intelligence) {
 	its_intelligence = intelligence;
 }

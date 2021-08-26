@@ -40,6 +40,7 @@ int main()
 
     std::string user_choice;
     char real_choice;
+    int user_clone_choice = 0;
 
     // fight
     int user_fighter_choice_0 = 0;
@@ -125,7 +126,7 @@ int main()
         {
             if (number_orcs < 2)
             {
-                std::cout << "There are too few orcs, please create another!\n\n";
+                std::cout << "There are only one orc, please create another to fight!\n\n";
                 system("pause");
                 system("CLS");
                 continue;
@@ -221,6 +222,47 @@ int main()
                 system("CLS");
                 continue;
             }
+        } if (real_choice == 'e')   // clone orc
+        {
+            std::cout << "Welcome to the orc cloning facility!\n\n";
+            std::cout << "Number of orcs: " << number_orcs << "\n";
+            for (int i = 0; i < number_orcs; i++)
+            {
+                std::cout << i + 1 << ". " << array_orcs[i].its_name << "\n";
+            }
+
+            std::cout << "\nGive the number of the orc you want to clone: \n";
+            std::cin.ignore();
+            std::cin >> user_clone_choice;
+            if (user_clone_choice < 1) { user_clone_choice = 1; }
+            if (user_clone_choice > number_orcs) { user_clone_choice = number_orcs; }
+
+            Orc copy_orc = array_orcs[user_clone_choice-1];
+            number_orcs++;
+            array_orcs.push_back(copy_orc);
+
+            std::cout << array_orcs[user_clone_choice-1].its_name << " has been cloned!\n\n";
+
+            system("pause");
+            system("CLS");
+            continue;
+        } if (real_choice == 'f')   // pointers
+        {
+            std::cout << "Pointer testing!\n\n";
+            Orc* pointerOrc;
+            int* pointerOrc_strength;
+
+            pointerOrc_strength = &array_orcs[0].its_strength;
+            pointerOrc = &array_orcs[0];
+
+            std::cout << "Accessing data with pointer:\n";
+            std::cout << "pointerOrc:" << pointerOrc << "\n";
+            std::cout << "*pointerOrc:" << pointerOrc->its_strength << "\n";
+            std::cout << "*pointerOrc_strength:" << *pointerOrc_strength << "\n";
+            
+            system("pause");
+            system("CLS");
+            continue;
         } if (real_choice == 'x' or real_choice != 'X')   // exit
         {
             std::cout << "Exiting application...\n";
@@ -250,6 +292,8 @@ void ShowOptions() {
     std::cout << "Create 2 randoms\t - b\n";
     std::cout << "List existing orcs\t - c\n";
     std::cout << "Let them fight!\t\t - d\n";
+    std::cout << "Clone orc\t\t - e\n";
+    std::cout << "Pointer testing\t\t - f\n";
     std::cout << "Exit\t\t\t - x\n";
 }
 

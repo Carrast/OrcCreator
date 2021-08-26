@@ -17,6 +17,9 @@ public:
 	Orc(const std::string& name, int strength, int dexterity, int endurance);
 	~Orc();
 
+	// copy constructor
+	Orc(const Orc& other_orc);
+
 	void SetIntelligence(int intelligence);
 	int GetIntelligence() const;
 	void SetCharisma(int charisma);
