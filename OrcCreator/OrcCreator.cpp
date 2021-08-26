@@ -43,8 +43,8 @@ int main()
     int user_clone_choice = 0;
 
     // fight
-    int user_fighter_choice_0 = 0;
-    int user_fighter_choice_1 = 0;
+    int user_fighter_choice_0 = 0;  // unused right now
+    int user_fighter_choice_1 = 0;  // unused right now
     int health_fighter0 = 0;
     int health_fighter1 = 0;
     int d6 = 0;
@@ -88,7 +88,6 @@ int main()
             number_orcs++;
             // create orc with function call
             array_orcs.push_back(CreateOrc(orc_name, orc_strength, orc_dexterity, orc_endurance, orc_intelligence, orc_charisma));
-
             system("pause");
             system("CLS");
             continue;
@@ -237,6 +236,7 @@ int main()
             if (user_clone_choice < 1) { user_clone_choice = 1; }
             if (user_clone_choice > number_orcs) { user_clone_choice = number_orcs; }
 
+            // copy construcor called
             Orc copy_orc = array_orcs[user_clone_choice-1];
             number_orcs++;
             array_orcs.push_back(copy_orc);
@@ -252,8 +252,8 @@ int main()
             Orc* pointerOrc;
             int* pointerOrc_strength;
 
-            pointerOrc_strength = &array_orcs[0].its_strength;
             pointerOrc = &array_orcs[0];
+            pointerOrc_strength = &array_orcs[0].its_strength;
 
             std::cout << "Accessing data with pointer:\n";
             std::cout << "pointerOrc:" << pointerOrc << "\n";
