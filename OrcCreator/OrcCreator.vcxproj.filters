@@ -26,5 +26,8 @@
     <ClInclude Include="orc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="mutated_orc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

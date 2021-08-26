@@ -143,6 +143,7 @@
     <ClCompile Include="OrcCreator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="mutated_orc.h" />
     <ClInclude Include="orc.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
