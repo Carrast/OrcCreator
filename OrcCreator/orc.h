@@ -24,6 +24,8 @@ public:
 	int GetIntelligence() const;
 	void SetCharisma(int charisma);
 	int GetCharisma() const;
+	void SetColor(std::string clr);
+	std::string GetColor();
 
 	// speech
 	void Roar(int intelligence, int charisma);
@@ -31,4 +33,7 @@ public:
 private:
 	int its_intelligence = 0;
 	int its_charisma = 0;
+
+protected:
+	std::string its_color = "green";
 };

@@ -44,6 +44,14 @@ int Orc::GetCharisma() const {
 	return its_charisma;
 }
 
+void Orc::SetColor(std::string clr) {
+	its_color = clr;
+}
+
+std::string Orc::GetColor() {
+	return its_color;
+}
+
 void Orc::Roar(int intelligence, int charisma) {
 	if (intelligence < 9)
 	{
