@@ -10,7 +10,10 @@ public:
 	int its_dexterity = 0;
 	int its_endurance = 0;
 	int its_health = 0;
-	int its_mana = 20;
+	int its_mana = 0;
+
+	int its_level = 1;
+	int	its_experience = 0;
 	int its_kills = 0;
 
 	// constructor - destructor

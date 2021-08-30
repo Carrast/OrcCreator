@@ -8,8 +8,9 @@ Orc::Orc(const std::string& name, int strength, int dexterity, int endurance) {
 	its_dexterity = dexterity;
 	its_endurance = endurance;
 
-	// health
-	its_health = its_endurance * 3;
+	// health - mana
+	its_health = 30 + std::max(10, its_endurance) * 3;
+	its_mana = 0;
 }
 
 // destructor
@@ -24,8 +25,9 @@ Orc::Orc(const Orc& other_orc) {
 	its_dexterity = other_orc.its_dexterity;
 	its_endurance = other_orc.its_endurance;
 
-	// health
-	its_health = other_orc.its_endurance * 3;
+	// health - mana
+	its_health = other_orc.its_health;
+	its_mana = other_orc.its_mana;
 }
 
 void Orc::SetIntelligence(int intelligence) {
@@ -55,22 +57,22 @@ std::string Orc::GetColor() {
 void Orc::Roar(int intelligence, int charisma) {
 	if (intelligence < 9)
 	{
-		std::cout << "argh!\n";
+		std::cout << "ughm!\n";
 	}
 	else if (intelligence < 12)
 	{
-		std::cout << "AArgHH!\n";
+		std::cout << "Aughm! die!\n";
 	}
 	else if (intelligence < 15)
 	{
-		std::cout << "Aughm! You die now!\n";
+		std::cout << "AArgHH! You die now!\n";
 	}
 	else if (intelligence >= 15)
 	{
-		std::cout << "AArghh! You will die by my hand!\n";
+		std::cout << "ARGH! You will die by my hand!\n";
 	}
 
-	if (charisma > 16)
+	if (charisma > 14)
 	{
 		std::cout << "Ash-nazg Kratalatuk!!!\n";
 	}
