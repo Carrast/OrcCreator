@@ -24,7 +24,9 @@ Orc::Orc(const Orc& other_orc) {
 	its_strength = other_orc.its_strength;
 	its_dexterity = other_orc.its_dexterity;
 	its_endurance = other_orc.its_endurance;
-
+	its_intelligence = other_orc.its_intelligence;
+	its_charisma = other_orc.its_charisma;
+		 
 	// health - mana
 	its_health = other_orc.its_health;
 	its_mana = other_orc.its_mana;

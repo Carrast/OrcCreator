@@ -245,7 +245,7 @@ int main()
         {
             std::cout << "Welcome to the orc cloning facility!\n\n";
             std::cout << "Number of orcs: " << number_orcs << "\n";
-            for (int i = 0; i < number_orcs; i++)
+            for (std::size_t i = 0; i < array_orcs.size(); i++)
             {
                 std::cout << i + 1 << ". " << array_orcs[i]->its_name << "\n";
             }
