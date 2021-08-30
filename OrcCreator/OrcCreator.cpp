@@ -103,23 +103,15 @@ int main()
 
         } if (real_choice == 'b')   // Create 2 random orcs
         {
-            // 1
+            // create 1 with function call
             random_name1 = random_orc_names_start[rand() % 10] + random_orc_names_end[rand() % 10];
-            Orc *random_orc1 = new Orc(random_name1, (rand()%15 + 6), (rand()%15 + 6), (rand()%15 + 6));
-            random_orc1->SetIntelligence(rand()%15 + 6);
-            random_orc1->its_mana = 20 + random_orc1->GetIntelligence();
-            random_orc1->SetCharisma(rand() % 15 + 6);
+            array_orcs.push_back(CreateOrc(random_name1, (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6)));
             number_orcs++;
-            array_orcs.push_back(random_orc1);
 
-            // 2
+            // create 2 with function call
             random_name2 = random_orc_names_start[rand() % 10] + random_orc_names_end[rand() % 10];
-            Orc *random_orc2 = new Orc(random_name2, (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6));
-            random_orc2->SetIntelligence(rand() % 15 + 6);
-            random_orc2->its_mana = 20 + random_orc2->GetIntelligence();
-            random_orc2->SetCharisma(rand() % 15 + 6);
+            array_orcs.push_back(CreateOrc(random_name2, (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6)));
             number_orcs++;
-            array_orcs.push_back(random_orc2);
 
             std::cout << "Two random orcs have been created!\n\n";
 
