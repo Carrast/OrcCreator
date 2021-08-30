@@ -17,7 +17,7 @@ void WelcomeText();
 void ShowOptions();
 
 // TODO
-Orc *CreateOrc(const std::string& name, int strength, int dexterity, int endurance, int intelligence, int charisma);
+Orc* CreateOrc(const std::string& name, int strength, int dexterity, int endurance, int intelligence, int charisma);
 void ListOrcs(int number_orcs, const std::vector<Orc*>& orcs);
 
 int main()
@@ -180,6 +180,7 @@ int main()
                         std::cout << array_orcs[0]->its_name << " has slain " << array_orcs[1]->its_name  << "!\n";
                         array_orcs[0]->its_health = array_orcs[0]->its_endurance * 3;
                         array_orcs[0]->its_kills++;
+                        delete array_orcs[1];
                         array_orcs.erase(array_orcs.begin()+1);
                         number_orcs--;
                         break;
@@ -210,6 +211,7 @@ int main()
                         std::cout << array_orcs[1]->its_name << " has slain " << array_orcs[0]->its_name << "!\n";
                         array_orcs[1]->its_health = array_orcs[1]->its_endurance * 3;
                         array_orcs[1]->its_kills++;
+                        delete array_orcs[0];
                         array_orcs.erase(array_orcs.begin() + 0);
                         number_orcs--;
                         break;
@@ -277,7 +279,7 @@ int main()
     } while (real_choice != 'x' && real_choice != 'X');
     
     // must release memory occupied by orcs, everything created with new must be deleted...
-    // this is iteration you could use it in ListOrcs but there you coud use a const iterator
+    // this is iteration you could use it in ListOrcs but there you could use a const iterator
     for (std::vector<Orc*>::iterator o = array_orcs.begin(); o != array_orcs.end(); ) {
         delete* o;
         o = array_orcs.erase(o);
