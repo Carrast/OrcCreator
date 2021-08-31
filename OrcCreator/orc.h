@@ -1,5 +1,4 @@
 #pragma once
-
 #include <string>
 
 // class declaration
@@ -32,7 +31,7 @@ public:
 	std::string GetColor();
 
 	// speech
-	void Roar(int intelligence, int charisma);
+	virtual void Roar(int intelligence, int charisma);
 
 private:
 	int its_intelligence = 0;

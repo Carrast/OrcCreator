@@ -4,7 +4,8 @@
 // 
 // TODO
 // -let the user decide which orc fights (if there more than two ofc)
-// -ability to create mutated orcs
+// -ability to create mutated orcs using virtual functions (Roar)
+// - there's a 30% chance that the random generator will createa  mutated, uruk-hai orc, then we will use the virtual function there
 
 #include <iostream>
 #include <vector>
@@ -13,6 +14,7 @@
 #include <algorithm>
 #include <string>
 #include "orc.h"
+#include "mutated_orc.h"
 
 // main functions
 void WelcomeText();

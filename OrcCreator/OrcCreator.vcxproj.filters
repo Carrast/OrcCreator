@@ -21,6 +21,9 @@
     <ClCompile Include="orc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="mutated_orc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="orc.h">

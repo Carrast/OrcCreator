@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="mutated_orc.cpp" />
     <ClCompile Include="orc.cpp" />
     <ClCompile Include="OrcCreator.cpp" />
   </ItemGroup>
