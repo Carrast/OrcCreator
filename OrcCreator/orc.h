@@ -23,6 +23,7 @@ public:
 	// copy constructor
 	Orc(const Orc& other_orc);
 
+	// functions
 	void SetIntelligence(int intelligence);
 	int GetIntelligence() const;
 	void SetCharisma(int charisma);

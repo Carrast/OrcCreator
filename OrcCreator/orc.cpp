@@ -32,6 +32,7 @@ Orc::Orc(const Orc& other_orc) {
 	its_mana = other_orc.its_mana;
 }
 
+// class methods
 void Orc::SetIntelligence(int intelligence) {
 	its_intelligence = intelligence;
 }
@@ -56,6 +57,7 @@ std::string Orc::GetColor() {
 	return its_color;
 }
 
+// speech
 void Orc::Roar(int intelligence, int charisma) {
 	if (intelligence < 9)
 	{

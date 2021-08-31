@@ -4,6 +4,7 @@
 // 
 // TODO
 // -let the user decide which orc fights (if there more than two ofc)
+// -ability to create mutated orcs
 
 #include <iostream>
 #include <vector>
@@ -13,11 +14,12 @@
 #include <string>
 #include "orc.h"
 
+// main functions
 void WelcomeText();
 void ShowOptions();
 
-// TODO
-Orc* CreateOrc(const std::string& name, int strength, int dexterity, int endurance, int intelligence, int charisma);
+// main functions to create orcs in heap
+Orc *CreateOrc(const std::string& name, int strength, int dexterity, int endurance, int intelligence, int charisma);
 void ListOrcs(int number_orcs, const std::vector<Orc*>& orcs);
 
 int main()
@@ -28,16 +30,19 @@ int main()
     std::string random_name1;
     std::string random_name2;
 
-    int number_orcs = 0;
+    // orc attributes
     std::string orc_name;
     int orc_strength;
     int orc_dexterity;
     int orc_endurance;
     int orc_intelligence;
     int orc_charisma;
-    
+  
+    // vector
+    int number_orcs = 0;
     std::vector<Orc*> array_orcs;
 
+    // user choices
     std::string user_choice;
     char real_choice;
     int user_clone_choice = 0;
@@ -103,12 +108,12 @@ int main()
 
         } if (real_choice == 'b')   // Create 2 random orcs
         {
-            // create 1 with function call
+            // create 1. with function call
             random_name1 = random_orc_names_start[rand() % 10] + random_orc_names_end[rand() % 10];
             array_orcs.push_back(CreateOrc(random_name1, (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6)));
             number_orcs++;
 
-            // create 2 with function call
+            // create 2. with function call
             random_name2 = random_orc_names_start[rand() % 10] + random_orc_names_end[rand() % 10];
             array_orcs.push_back(CreateOrc(random_name2, (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6)));
             number_orcs++;
@@ -128,7 +133,7 @@ int main()
         {
             if (number_orcs < 2)
             {
-                std::cout << "There are only one orc, please create another to fight!\n\n";
+                std::cout << "There is only one orc, please create another to fight!\n\n";
                 system("pause");
                 system("CLS");
                 continue;
@@ -248,7 +253,7 @@ int main()
             if (user_clone_choice < 1) { user_clone_choice = 1; }
             if (user_clone_choice > number_orcs) { user_clone_choice = number_orcs; }
 
-            // copy construcor called
+            // copy construcor call
             Orc *copy_orc = new Orc(*array_orcs[user_clone_choice-1]);
             number_orcs++;
             array_orcs.push_back(copy_orc);
@@ -261,16 +266,16 @@ int main()
         } if (real_choice == 'f')   // pointers
         {
             std::cout << "Pointer testing!\n\n";
-            Orc* pointerOrc;
-            int pointerOrc_strength;
+            Orc *pointerOrc;
+            int *pointerOrc_strength;
 
             pointerOrc = array_orcs[0];
-            pointerOrc_strength = array_orcs[0]->its_strength;
+            pointerOrc_strength = &array_orcs[0]->its_strength;
 
             std::cout << "Accessing data with pointer:\n";
             std::cout << "pointerOrc:" << pointerOrc << "\n";
             std::cout << "*pointerOrc:" << pointerOrc->its_strength << "\n";
-            std::cout << "*pointerOrc_strength:" << pointerOrc_strength << "\n";
+            std::cout << "*pointerOrc_strength:" << *pointerOrc_strength << "\n";
             
             system("pause");
             system("CLS");
@@ -291,8 +296,8 @@ int main()
     // must release memory occupied by orcs, everything created with new must be deleted...
     // this is iteration you could use it in ListOrcs but there you could use a const iterator
     for (std::vector<Orc*>::iterator o = array_orcs.begin(); o != array_orcs.end(); ) {
-        delete* o;
-        o = array_orcs.erase(o);
+        delete *o;                      // delete from heap
+        o = array_orcs.erase(o);        // erase from array in stack
     }
 
     return 0;
