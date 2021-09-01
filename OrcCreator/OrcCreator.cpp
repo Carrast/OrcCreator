@@ -22,6 +22,7 @@ void ShowOptions();
 
 // main functions to create orcs in heap
 Orc *CreateOrc(const std::string& name, int strength, int dexterity, int endurance, int intelligence, int charisma);
+MutatedOrc* CreateMutatedOrc(const std::string& name, int strength, int dexterity, int endurance, int intelligence, int charisma);
 void ListOrcs(int number_orcs, const std::vector<Orc*>& orcs);
 
 int main()
@@ -117,7 +118,7 @@ int main()
 
             // create 2. with function call
             random_name2 = random_orc_names_start[rand() % 10] + random_orc_names_end[rand() % 10];
-            array_orcs.push_back(CreateOrc(random_name2, (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6)));
+            array_orcs.push_back(CreateMutatedOrc(random_name2, (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6)));
             number_orcs++;
 
             std::cout << "Two random orcs have been created!\n\n";
@@ -328,18 +329,33 @@ Orc *CreateOrc(const std::string& name, int strength, int dexterity, int enduran
     orc->SetIntelligence(intelligence);
     orc->its_mana = 20 + intelligence;
     orc->SetCharisma(charisma);
-    orc->Roar(intelligence, charisma);
+    std::cout << name << " screams: ";
+    orc->Roar(intelligence, charisma, orc->GetColor());
+    return orc;
+}
+
+MutatedOrc* CreateMutatedOrc(const std::string& name, int strength, int dexterity, int endurance, int intelligence, int charisma) {
+    MutatedOrc* orc = new MutatedOrc(name, strength, dexterity, endurance);
+    orc->SetIntelligence(intelligence);
+    orc->its_mana = 20 + intelligence;
+    orc->SetCharisma(charisma);
+    orc->SetColor("black");
+    std::cout << name << " screams: ";
+    orc->Roar(intelligence, charisma, orc->GetColor(), orc->its_rage);
     return orc;
 }
 
 void ListOrcs(int number_orcs, const std::vector<Orc*>& array_orcs) {
+
+    // mutation string
+    std::string is_mutated[2] = { "", "mutated " };
 
     std::cout << "Number of orcs: " << number_orcs << "\n";
 
     for (std::size_t i = 0; i < array_orcs.size(); i++)
     {
         std::cout << "Name:\t\t\t" << array_orcs[i]->its_name << "\n";
-        std::cout << "Level " << array_orcs[i]->its_level << " orc.\n\n";
+        std::cout << "Level " << array_orcs[i]->its_level << " " << is_mutated[array_orcs[i]->is_mutated] << "orc.\n\n";
         std::cout << "Experience:\t\t" << array_orcs[i]->its_experience << "\n";
         std::cout << "Number of kills:\t" << array_orcs[i]->its_kills << "\n\n";
         std::cout << "Strength:\t\t" << array_orcs[i]->its_strength << "\n";

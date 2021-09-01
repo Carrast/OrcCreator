@@ -8,6 +8,9 @@ Orc::Orc(const std::string& name, int strength, int dexterity, int endurance) {
 	its_dexterity = dexterity;
 	its_endurance = endurance;
 
+	// mutation
+	is_mutated = false;
+
 	// health - mana
 	its_health = 30 + std::max(10, its_endurance) * 3;
 	its_mana = 0;
@@ -15,7 +18,7 @@ Orc::Orc(const std::string& name, int strength, int dexterity, int endurance) {
 
 // destructor
 Orc::~Orc() {
-	std::cout << "His body is destroyed.\n";
+	std::cerr << "His body is destroyed.\n";
 }
 
 // copy constructor
@@ -26,7 +29,10 @@ Orc::Orc(const Orc& other_orc) {
 	its_endurance = other_orc.its_endurance;
 	its_intelligence = other_orc.its_intelligence;
 	its_charisma = other_orc.its_charisma;
-		 
+
+	// mutation
+	is_mutated = other_orc.is_mutated;
+
 	// health - mana
 	its_health = other_orc.its_health;
 	its_mana = other_orc.its_mana;
@@ -58,26 +64,29 @@ std::string Orc::GetColor() {
 }
 
 // speech
-void Orc::Roar(int intelligence, int charisma) {
+void Orc::Roar(int intelligence, int charisma, std::string its_color) {
 	if (intelligence < 9)
 	{
-		std::cout << "ughm!\n";
+		std::cout << "ughm! ";
 	}
 	else if (intelligence < 12)
 	{
-		std::cout << "Aughm! die!\n";
+		std::cout << "Aughm! die! ";
 	}
 	else if (intelligence < 15)
 	{
-		std::cout << "AArgHH! You die now!\n";
+		std::cout << "AArgHH! You die now! ";
 	}
 	else if (intelligence >= 15)
 	{
-		std::cout << "ARGH! You will die by my hand!\n";
+		std::cout << "ARGH! You will die by my hand! ";
+		std::cout << "My skin is " << its_color << " ";
 	}
 
 	if (charisma > 14)
 	{
-		std::cout << "Ash-nazg Kratalatuk!!!\n";
+		std::cout << "Ash-nazg Kratalatuk!!!";
 	}
+
+	std::cout << "\n\n";
 }

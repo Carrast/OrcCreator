@@ -12,12 +12,13 @@ public:
 	int its_mana = 0;
 
 	int its_level = 1;
+	bool is_mutated = false;
 	int	its_experience = 0;
 	int its_kills = 0;
 
 	// constructor - destructor
 	Orc(const std::string& name, int strength, int dexterity, int endurance);
-	~Orc();
+	virtual ~Orc();
 
 	// copy constructor
 	Orc(const Orc& other_orc);
@@ -31,7 +32,7 @@ public:
 	std::string GetColor();
 
 	// speech
-	virtual void Roar(int intelligence, int charisma);
+	virtual void Roar(int intelligence, int charisma, std::string its_color);
 
 private:
 	int its_intelligence = 0;

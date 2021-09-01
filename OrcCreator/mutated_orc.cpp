@@ -2,6 +2,29 @@
 #include "mutated_orc.h"
 #include <iostream>
 
-void MutatedOrc::Roar(int intelligence, int charisma) {
-	std::cout << "I AM URUK-HAI!!\n";
+// constructor
+MutatedOrc::MutatedOrc(const std::string& name, int strength, int dexterity, int endurance) : Orc(name, strength, dexterity, endurance) {
+	its_name = name;
+	its_strength = strength;
+	its_dexterity = dexterity;
+	its_endurance = endurance;
+
+	// mutation
+	is_mutated = true;
+
+	// health - mana
+	its_health = 30 + std::max(10, its_endurance) * 3;
+	its_mana = 0;
+}
+
+// destructor
+MutatedOrc::~MutatedOrc() {
+	std::cerr << "His mutated body is destroyed.\n";
+}
+
+// mutated speech
+void MutatedOrc::Roar(int intelligence, int charisma, std::string its_color, int rage) {
+	std::cout << "I AM URUK-HAI!! ";
+	std::cout << "My skin is " << its_color << "! ";
+	std::cout << "I am angry! My rage is " << rage << "!\n\n";
 }
