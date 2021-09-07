@@ -21,7 +21,7 @@ void WelcomeText();
 void ShowOptions();
 
 // main functions to create orcs in heap
-Orc *CreateOrc(const std::string& name, int strength, int dexterity, int endurance, int intelligence, int charisma);
+Orc* CreateOrc(const std::string& name, int strength, int dexterity, int endurance, int intelligence, int charisma);
 MutatedOrc* CreateMutatedOrc(const std::string& name, int strength, int dexterity, int endurance, int intelligence, int charisma);
 void ListOrcs(int number_orcs, const std::vector<Orc*>& orcs);
 
@@ -116,7 +116,7 @@ int main()
             array_orcs.push_back(CreateOrc(random_name1, (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6)));
             number_orcs++;
 
-            // create 2. with function call
+            // create 2. with function call /mutated/
             random_name2 = random_orc_names_start[rand() % 10] + random_orc_names_end[rand() % 10];
             array_orcs.push_back(CreateMutatedOrc(random_name2, (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6)));
             number_orcs++;
@@ -324,8 +324,8 @@ void ShowOptions() {
     std::cout << "Exit\t\t\t - x\n";
 }
 
-Orc *CreateOrc(const std::string& name, int strength, int dexterity, int endurance, int intelligence, int charisma) {
-    Orc *orc = new Orc(name, strength, dexterity, endurance);
+Orc* CreateOrc(const std::string& name, int strength, int dexterity, int endurance, int intelligence, int charisma) {
+    Orc* orc = new Orc(name, strength, dexterity, endurance);
     orc->SetIntelligence(intelligence);
     orc->its_mana = 20 + intelligence;
     orc->SetCharisma(charisma);
