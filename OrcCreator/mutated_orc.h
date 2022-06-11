@@ -1,6 +1,7 @@
 #pragma once
-#include <string>
 #include "orc.h"
+#include <string>
+#include <iostream>
 
 // derived class declaration
 class MutatedOrc : public Orc {
@@ -9,9 +10,9 @@ public:
 
 	// constructor - destructor
 	// using Orc::Orc;			// the easy solution
-	MutatedOrc(const std::string& name, int strength, int dexterity, int endurance);
+	MutatedOrc(const std::string& name, int str, int dex, int end);
 	virtual ~MutatedOrc();
 
 	// mutated speech
-	void Roar(int intelligence, int charisma, std::string its_color, int rage);
+	void Roar(int intel, int cha, std::string color, int rage);
 };

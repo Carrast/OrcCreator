@@ -1,43 +1,44 @@
 #pragma once
 #include <string>
+#include <iostream>
 
 // class declaration
 class Orc {
 public:
 	std::string its_name;
-	int its_strength = 0;
-	int its_dexterity = 0;
-	int its_endurance = 0;
-	int its_health = 0;
-	int its_mana = 0;
+	int strength;
+	int dexterity;
+	int endurance;
+	int health;
+	int mana;
 
-	int its_level = 1;
+	int level = 1;
 	bool is_mutated = false;
-	int	its_experience = 0;
-	int its_kills = 0;
+	int	experience;
+	int num_kills;
 
 	// constructor - destructor
-	Orc(const std::string& name, int strength, int dexterity, int endurance);
+	Orc(const std::string& name, int str, int dex, int end);
 	virtual ~Orc();
 
 	// copy constructor
 	Orc(const Orc& other_orc);
 
 	// functions
-	void SetIntelligence(int intelligence);
+	void SetIntelligence(int intel);
 	int GetIntelligence() const;
-	void SetCharisma(int charisma);
+	void SetCharisma(int cha);
 	int GetCharisma() const;
 	void SetColor(std::string clr);
 	std::string GetColor();
 
 	// speech
-	virtual void Roar(int intelligence, int charisma, std::string its_color);
+	virtual void Roar(int intel, int cha, std::string color);
 
 private:
-	int its_intelligence = 0;
-	int its_charisma = 0;
+	int intelligence = 0;
+	int charisma = 0;
 
 protected:
-	std::string its_color = "green";
+	std::string color = "green";
 };

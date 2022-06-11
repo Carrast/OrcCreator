@@ -1,19 +1,20 @@
 #include "orc.h"
-#include <iostream>
 
 // constructor
-Orc::Orc(const std::string& name, int strength, int dexterity, int endurance) {
+Orc::Orc(const std::string& name, int str, int dex, int end) {
 	its_name = name;
-	its_strength = strength;
-	its_dexterity = dexterity;
-	its_endurance = endurance;
+	strength = str;
+	dexterity = dex;
+	endurance = end;
 
 	// mutation
 	is_mutated = false;
 
 	// health - mana
-	its_health = 30 + std::max(10, its_endurance) * 3;
-	its_mana = 0;
+	health = 30 + std::max(10, endurance) * 3;
+	mana = 0;
+	experience = 0;
+	num_kills = 0;
 }
 
 // destructor
@@ -24,47 +25,47 @@ Orc::~Orc() {
 // copy constructor
 Orc::Orc(const Orc& other_orc) {
 	its_name = other_orc.its_name;
-	its_strength = other_orc.its_strength;
-	its_dexterity = other_orc.its_dexterity;
-	its_endurance = other_orc.its_endurance;
-	its_intelligence = other_orc.its_intelligence;
-	its_charisma = other_orc.its_charisma;
+	strength = other_orc.strength;
+	dexterity = other_orc.dexterity;
+	endurance = other_orc.endurance;
+	intelligence = other_orc.intelligence;
+	charisma = other_orc.charisma;
 
 	// mutation
 	is_mutated = other_orc.is_mutated;
 
 	// health - mana
-	its_health = other_orc.its_health;
-	its_mana = other_orc.its_mana;
+	health = other_orc.health;
+	mana = other_orc.mana;
 }
 
 // class methods
-void Orc::SetIntelligence(int intelligence) {
-	its_intelligence = intelligence;
+void Orc::SetIntelligence(int intel) {
+	intelligence = intel;
 }
 
 int Orc::GetIntelligence() const {
-	return its_intelligence;
+	return intelligence;
 }
 
-void Orc::SetCharisma(int charisma) {
-	its_charisma = charisma;
+void Orc::SetCharisma(int cha) {
+	charisma = cha;
 }
 
 int Orc::GetCharisma() const {
-	return its_charisma;
+	return charisma;
 }
 
 void Orc::SetColor(std::string clr) {
-	its_color = clr;
+	color = clr;
 }
 
 std::string Orc::GetColor() {
-	return its_color;
+	return color;
 }
 
 // speech
-void Orc::Roar(int intelligence, int charisma, std::string its_color) {
+void Orc::Roar(int intel, int cha, std::string color) {
 	if (intelligence < 9)
 	{
 		std::cout << "ughm! ";
@@ -80,7 +81,7 @@ void Orc::Roar(int intelligence, int charisma, std::string its_color) {
 	else if (intelligence >= 15)
 	{
 		std::cout << "ARGH! You will die by my hand! ";
-		std::cout << "My skin is " << its_color << " ";
+		std::cout << "My skin is " << color << " ";
 	}
 
 	if (charisma > 14)
