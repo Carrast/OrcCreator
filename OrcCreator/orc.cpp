@@ -70,26 +70,26 @@ unsigned short Orc::GetNumOrcs() const {
 }
 
 	// speech
-void Orc::Roar(int intelligence, int charisma, std::string clr) {
-	if (intelligence < 9)
+void Orc::Roar(int intel, int cha, std::string clr) {
+	if (intel < 9)
 	{
 		std::cout << "ughm! ";
 	}
-	else if (intelligence < 12)
+	else if (intel < 12)
 	{
 		std::cout << "Aughm! die! ";
 	}
-	else if (intelligence < 15)
+	else if (intel < 15)
 	{
 		std::cout << "AArgHH! You die now! ";
 	}
-	else if (intelligence >= 15)
+	else if (intel >= 15)
 	{
 		std::cout << "ARGH! You will die by my hand! ";
 		std::cout << "My skin is " << clr << " ";
 	}
 
-	if (charisma > 14)
+	if (cha > 14)
 	{
 		std::cout << "Ash-nazg Kratalatuk!!!";
 	}

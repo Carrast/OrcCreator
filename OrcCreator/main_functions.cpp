@@ -18,24 +18,24 @@ void ShowOptions() {
     std::cout << "Exit\t\t\t - x\n";
 }
 
-Orc* CreateOrc(const std::string& name, int strength, int dexterity, int endurance, int intelligence, int charisma) {
-    Orc* orc = new Orc(name, strength, dexterity, endurance);
-    orc->SetIntelligence(intelligence);
-    orc->mana = 20 + intelligence;
-    orc->SetCharisma(charisma);
+Orc* CreateOrc(const std::string& name, int str, int dex, int end, int intel, int cha) {
+    Orc* orc = new Orc(name, str, dex, end);
+    orc->SetIntelligence(intel);
+    orc->mana = 20 + intel;
+    orc->SetCharisma(cha);
     std::cout << name << " screams: ";
-    orc->Roar(intelligence, charisma, orc->GetColor());
+    orc->Roar(intel, cha, orc->GetColor());
     return orc;
 }
 
-MutatedOrc* CreateMutatedOrc(const std::string& name, int strength, int dexterity, int endurance, int intelligence, int charisma) {
-    MutatedOrc* orc = new MutatedOrc(name, strength, dexterity, endurance);
-    orc->SetIntelligence(intelligence);
-    orc->mana = 20 + intelligence;
-    orc->SetCharisma(charisma);
+MutatedOrc* CreateMutatedOrc(const std::string& name, int str, int dex, int end, int intel, int cha) {
+    MutatedOrc* orc = new MutatedOrc(name, str, dex, end);
+    orc->SetIntelligence(intel);
+    orc->mana = 20 + intel;
+    orc->SetCharisma(cha);
     orc->SetColor("black");
     std::cout << name << " screams: ";
-    orc->Roar(intelligence, charisma, orc->GetColor(), orc->its_rage);
+    orc->Roar(intel, cha, orc->GetColor(), orc->its_rage);
     return orc;
 }
 

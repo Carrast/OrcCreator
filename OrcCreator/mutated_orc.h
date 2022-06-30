@@ -14,5 +14,5 @@ public:
 	virtual ~MutatedOrc();
 
 	// mutated speech
-	void Roar(int intelligence, int charisma, std::string clr, int rage);
+	void Roar(int intel, int cha, std::string clr, int rage);
 };
