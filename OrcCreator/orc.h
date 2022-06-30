@@ -35,13 +35,13 @@ public:
 	unsigned short GetNumOrcs() const;
 
 	// speech
-	virtual void Roar(int intel, int cha, std::string color);
+	virtual void Roar(int intel, int cha, std::string clr);
 
 protected:
-	std::string its_color = "green";
+	std::string color = "green";
 
 private:
-	int its_intelligence = 0;
-	int its_charisma = 0;
+	int intelligence = 0;
+	int charisma = 0;
 	static unsigned short num_orcs;
 };

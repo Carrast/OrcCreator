@@ -11,8 +11,8 @@ Orc::Orc(const std::string& name, int str, int dex, int end) {
 	is_mutated = false;
 
 	// health - mana
-	its_health = 30 + std::max(10, its_endurance) * 3;
-	its_mana = 0;
+	health = 30 + std::max(10, endurance) * 3;
+	mana = 0;
 
 	num_orcs++;
 }
@@ -62,7 +62,7 @@ void Orc::SetColor(std::string clr) {
 }
 
 std::string Orc::GetColor() const {
-	return its_color;
+	return color;
 }
 
 unsigned short Orc::GetNumOrcs() const {
