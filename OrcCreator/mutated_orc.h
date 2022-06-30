@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 #include "orc.h"
 
 // derived class declaration
@@ -13,5 +12,5 @@ public:
 	virtual ~MutatedOrc();
 
 	// mutated speech
-	void Roar(int intelligence, int charisma, std::string its_color, int rage);
+	void Roar(int intelligence, int charisma, std::string clr, int rage);
 };

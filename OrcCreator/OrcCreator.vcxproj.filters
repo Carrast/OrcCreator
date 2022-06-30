@@ -24,12 +24,30 @@
     <ClCompile Include="mutated_orc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="weapons.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="orc_names.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main_functions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="orc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="mutated_orc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="weapons.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="orc_names.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="main_functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <iostream>
 
 // class declaration
 class Orc {
@@ -24,20 +25,23 @@ public:
 	Orc(const Orc& other_orc);
 
 	// functions
+	void SetColor(std::string clr);
+	std::string GetColor() const;
+
 	void SetIntelligence(int intelligence);
 	int GetIntelligence() const;
 	void SetCharisma(int charisma);
 	int GetCharisma() const;
-	void SetColor(std::string clr);
-	std::string GetColor();
+	unsigned short GetNumOrcs() const;
 
 	// speech
 	virtual void Roar(int intelligence, int charisma, std::string its_color);
 
+protected:
+	std::string its_color = "green";
+
 private:
 	int its_intelligence = 0;
 	int its_charisma = 0;
-
-protected:
-	std::string its_color = "green";
+	static unsigned short num_orcs;
 };

@@ -139,13 +139,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="main_functions.cpp" />
     <ClCompile Include="mutated_orc.cpp" />
     <ClCompile Include="orc.cpp" />
     <ClCompile Include="OrcCreator.cpp" />
+    <ClCompile Include="orc_names.cpp" />
+    <ClCompile Include="weapons.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="main_functions.h" />
     <ClInclude Include="mutated_orc.h" />
     <ClInclude Include="orc.h" />
+    <ClInclude Include="orc_names.h" />
+    <ClInclude Include="weapons.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

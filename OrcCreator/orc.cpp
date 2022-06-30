@@ -1,5 +1,4 @@
 #include "orc.h"
-#include <iostream>
 
 // constructor
 Orc::Orc(const std::string& name, int strength, int dexterity, int endurance) {
@@ -14,11 +13,14 @@ Orc::Orc(const std::string& name, int strength, int dexterity, int endurance) {
 	// health - mana
 	its_health = 30 + std::max(10, its_endurance) * 3;
 	its_mana = 0;
+
+	num_orcs++;
 }
 
 // destructor
 Orc::~Orc() {
 	std::cerr << "His body is destroyed.\n";
+	num_orcs--;
 }
 
 // copy constructor
@@ -59,12 +61,16 @@ void Orc::SetColor(std::string clr) {
 	its_color = clr;
 }
 
-std::string Orc::GetColor() {
+std::string Orc::GetColor() const {
 	return its_color;
 }
 
-// speech
-void Orc::Roar(int intelligence, int charisma, std::string its_color) {
+unsigned short Orc::GetNumOrcs() const {
+	return num_orcs;
+}
+
+	// speech
+void Orc::Roar(int intelligence, int charisma, std::string clr) {
 	if (intelligence < 9)
 	{
 		std::cout << "ughm! ";
@@ -80,7 +86,7 @@ void Orc::Roar(int intelligence, int charisma, std::string its_color) {
 	else if (intelligence >= 15)
 	{
 		std::cout << "ARGH! You will die by my hand! ";
-		std::cout << "My skin is " << its_color << " ";
+		std::cout << "My skin is " << clr << " ";
 	}
 
 	if (charisma > 14)

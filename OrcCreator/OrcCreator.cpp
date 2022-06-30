@@ -1,11 +1,25 @@
-// OrcCreator.cpp
+// *****************************************************************************
+// Source code for the Orc Creator!
 // v1.0
-// by Carrast
 // 
+// Developed by:	Carrast
+//                  Csanyi Bence
+//                  csanyibence@gmail.com
+//
+// 2021/11 
+// All rights reserved!
+// *****************************************************************************
+//
 // TODO
 // -let the user decide which orc fights (if there more than two ofc)
 // -ability to create mutated orcs using virtual functions (Roar)
-// - there's a 30% chance that the random generator will createa  mutated, uruk-hai orc, then we will use the virtual function there
+// -there's a 30% chance that the random generator will create a mutated, uruk-hai orc, then we will use the virtual function there
+//
+// QUESTIONS
+// -szétszedtem a maint, orc_names.h és main_functions.h
+// -tovább írtam a weapons-t
+// -static változók! hogyan használjuk õket? number_orcs vagy num_orcs?
+// -hogyan használja az ork a fegyót? hogyan érdemes megmondani, hogy õ ezt birtokolja? egyik class használja a másik classt
 
 #include <iostream>
 #include <vector>
@@ -15,23 +29,66 @@
 #include <string>
 #include "orc.h"
 #include "mutated_orc.h"
+#include "weapons.h"
+#include "orc_names.h"
+#include "main_functions.h"
 
-// main functions
-void WelcomeText();
-void ShowOptions();
-
-// main functions to create orcs in heap
-Orc* CreateOrc(const std::string& name, int strength, int dexterity, int endurance, int intelligence, int charisma);
-MutatedOrc* CreateMutatedOrc(const std::string& name, int strength, int dexterity, int endurance, int intelligence, int charisma);
-void ListOrcs(int number_orcs, const std::vector<Orc*>& orcs);
+// main static variables
+int Weapon::num_weapons = 0;
+unsigned short Orc::num_orcs = 0;
 
 int main()
 {
-    // random orc names
-    std::string random_orc_names_start[10] = { "Ugh", "Ug", "Aba", "Uh", "Zaba", "Abz", "Cucu", "Ragna", "Kraz", "Frah" };
-    std::string random_orc_names_end[10] = { "luk", "burz", "gog", "fark", "gug", "lug", "luk", "ork", "mug", "kuk" };
-    std::string random_name1;
-    std::string random_name2;
+    Sword kard;
+    Axe csatabard;
+    Bow ij;
+    //OneHandedAxe egykezes_balta;
+    Mace buzogany;
+
+    ij.SetRange(5.4);
+    int sebzes1 = kard.Attack();
+    int sebzes2 = csatabard.Attack();
+    int sebzes3 = ij.Attack();
+    
+    std::vector<Weapon*> fegyvertar;
+    fegyvertar.push_back(&kard);
+    fegyvertar.push_back(&csatabard);
+    fegyvertar.push_back(&ij);
+
+
+    int sebzes4 = fegyvertar[0]->Attack();
+    int sebzes5 = fegyvertar[1]->Attack();
+    int sebzes6 = fegyvertar[2]->Attack();
+
+    Bow* fegyverPtr = dynamic_cast <Bow*> (fegyvertar[2]);
+    if (fegyverPtr)
+    {
+        fegyverPtr->SetRange(6.7);
+    }
+
+    Axe* bardPrt = dynamic_cast <Axe*> (fegyvertar[1]);
+    if (bardPrt)
+    {
+        sebzes5 = bardPrt->Attack();
+    }
+
+    std::cout << fegyvertar[2]->GetNumWeapons();
+    std::string fegyver_neve = fegyvertar[0]->GetName();
+
+    // testing pairs!
+    typedef std::pair<Orc*, Orc*> OrcPair;
+    std::vector<OrcPair> torzs;
+
+    OrcPair uj_tipusu_valami;
+    // testing end
+
+
+
+
+
+    // ----------------------------------------------------------------
+    // ------------------------TRUE MAIN-------------------------------
+    // ----------------------------------------------------------------
 
     // orc attributes
     std::string orc_name;
@@ -51,9 +108,6 @@ int main()
     int user_clone_choice = 0;
 
     // fight
-    int user_fighter_choice_0 = 0;  // unused right now
-    int user_fighter_choice_1 = 0;  // unused right now
-
     int max_health_fighter0 = 0;
     int max_health_fighter1 = 0;
     int max_mana_fighter0 = 0;
@@ -103,6 +157,7 @@ int main()
 
             std::cout << "\nOrc with the name " << orc_name << " is born!\n";
             number_orcs++;
+
             // create orc with function call
             array_orcs.push_back(CreateOrc(orc_name, orc_strength, orc_dexterity, orc_endurance, orc_intelligence, orc_charisma));
             system("pause");
@@ -112,13 +167,11 @@ int main()
         } if (real_choice == 'b')   // Create 2 random orcs
         {
             // create 1. with function call
-            random_name1 = random_orc_names_start[rand() % 10] + random_orc_names_end[rand() % 10];
-            array_orcs.push_back(CreateOrc(random_name1, (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6)));
+            array_orcs.push_back(CreateOrc(GetRandomOrcName(), (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6)));
             number_orcs++;
 
             // create 2. with function call /mutated/
-            random_name2 = random_orc_names_start[rand() % 10] + random_orc_names_end[rand() % 10];
-            array_orcs.push_back(CreateMutatedOrc(random_name2, (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6)));
+            array_orcs.push_back(CreateMutatedOrc(GetRandomOrcName(), (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6), (rand() % 15 + 6)));
             number_orcs++;
 
             std::cout << "Two random orcs have been created!\n\n";
@@ -129,7 +182,10 @@ int main()
 
         } if (real_choice == 'c')   // List orcs
         {
-            ListOrcs(number_orcs, array_orcs);
+            if (array_orcs[0]->GetNumOrcs())
+            {
+                ListOrcs(array_orcs[0]->GetNumOrcs(), array_orcs);
+            }
             continue;
 
         } if (real_choice == 'd')   // let them fight!
@@ -304,69 +360,4 @@ int main()
     }
 
     return 0;
-}
-
-void WelcomeText() {
-    std::cout << "-------------------------------------\n";
-    std::cout << "--------Welcome to Orc Creator-------\n";
-    std::cout << "--------------by Carrast-------------\n";
-    std::cout << "----------------v1.0-----------------\n\n";
-}
-
-void ShowOptions() {
-    std::cout << "Choose from the options below:\n\n";
-    std::cout << "Create new orc\t\t - a\n";
-    std::cout << "Create 2 randoms\t - b\n";
-    std::cout << "List existing orcs\t - c\n";
-    std::cout << "Let them fight!\t\t - d\n";
-    std::cout << "Clone orc\t\t - e\n";
-    std::cout << "Pointer testing\t\t - f\n";
-    std::cout << "Exit\t\t\t - x\n";
-}
-
-Orc* CreateOrc(const std::string& name, int strength, int dexterity, int endurance, int intelligence, int charisma) {
-    Orc* orc = new Orc(name, strength, dexterity, endurance);
-    orc->SetIntelligence(intelligence);
-    orc->its_mana = 20 + intelligence;
-    orc->SetCharisma(charisma);
-    std::cout << name << " screams: ";
-    orc->Roar(intelligence, charisma, orc->GetColor());
-    return orc;
-}
-
-MutatedOrc* CreateMutatedOrc(const std::string& name, int strength, int dexterity, int endurance, int intelligence, int charisma) {
-    MutatedOrc* orc = new MutatedOrc(name, strength, dexterity, endurance);
-    orc->SetIntelligence(intelligence);
-    orc->its_mana = 20 + intelligence;
-    orc->SetCharisma(charisma);
-    orc->SetColor("black");
-    std::cout << name << " screams: ";
-    orc->Roar(intelligence, charisma, orc->GetColor(), orc->its_rage);
-    return orc;
-}
-
-void ListOrcs(int number_orcs, const std::vector<Orc*>& array_orcs) {
-
-    // mutation string
-    std::string is_mutated[2] = { "", "mutated " };
-
-    std::cout << "Number of orcs: " << number_orcs << "\n";
-
-    for (std::size_t i = 0; i < array_orcs.size(); i++)
-    {
-        std::cout << "Name:\t\t\t" << array_orcs[i]->its_name << "\n";
-        std::cout << "Level " << array_orcs[i]->its_level << " " << is_mutated[array_orcs[i]->is_mutated] << "orc.\n\n";
-        std::cout << "Experience:\t\t" << array_orcs[i]->its_experience << "\n";
-        std::cout << "Number of kills:\t" << array_orcs[i]->its_kills << "\n\n";
-        std::cout << "Strength:\t\t" << array_orcs[i]->its_strength << "\n";
-        std::cout << "Dexterity:\t\t" << array_orcs[i]->its_dexterity << "\n";
-        std::cout << "Endurance:\t\t" << array_orcs[i]->its_endurance << "\n";
-        std::cout << "Intellect:\t\t" << array_orcs[i]->GetIntelligence() << "\n";
-        std::cout << "Charisma:\t\t" << array_orcs[i]->GetCharisma() << "\n\n";
-        std::cout << "Hit points:\t\t[" << array_orcs[i]->its_health << "/" << array_orcs[i]->its_health << "]\n";
-        std::cout << "Mana:\t\t\t[" << array_orcs[i]->its_mana << "/" << array_orcs[i]->its_mana << "]\n\n";
-    }
-
-    system("pause");
-    system("CLS");
 }
