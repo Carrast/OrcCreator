@@ -205,7 +205,7 @@ int main()
                 std::cout << "\t" << array_orcs[0]->its_name << " VS " << array_orcs[1]->its_name << "\n\n";
 
                 // who strikes first
-                if (array_orcs[0]->its_dexterity > array_orcs[1]->its_dexterity)
+                if (array_orcs[0]->dexterity > array_orcs[1]->dexterity)
                 {
                     std::cout << array_orcs[0]->its_name << " is quicker, he beings the fight!\n";
                 }
@@ -216,24 +216,24 @@ int main()
                 }
 
                 // max health - max mana
-                max_health_fighter0 = array_orcs[0]->its_health;
-                max_health_fighter1 = array_orcs[1]->its_health;
-                max_mana_fighter0 = array_orcs[0]->its_mana;
-                max_mana_fighter1 = array_orcs[1]->its_mana;
+                max_health_fighter0 = array_orcs[0]->health;
+                max_health_fighter1 = array_orcs[1]->health;
+                max_mana_fighter0 = array_orcs[0]->mana;
+                max_mana_fighter1 = array_orcs[1]->mana;
 
                 // health - mana pool
-                health_fighter0 = array_orcs[0]->its_health;
-                health_fighter1 = array_orcs[1]->its_health;
-                mana_fighter0 = array_orcs[0]->its_mana;
-                mana_fighter1 = array_orcs[1]->its_mana;
+                health_fighter0 = array_orcs[0]->health;
+                health_fighter1 = array_orcs[1]->health;
+                mana_fighter0 = array_orcs[0]->mana;
+                mana_fighter1 = array_orcs[1]->mana;
 
                 do
                 {
                     // orc 0 attack
                     std::cout << array_orcs[0]->its_name << " is attacking. " << array_orcs[0]->its_name << " is swinging his sword, doing ";
                     d6 = rand() % 6 + 1;
-                    damage = (std::max(10, array_orcs[0]->its_strength) - 10) + d6;
-                    std::cout << (std::max(10, array_orcs[0]->its_strength) - 10)  << " + " << d6 << " = "<< damage << " damage!\n";
+                    damage = (std::max(10, array_orcs[0]->strength) - 10) + d6;
+                    std::cout << (std::max(10, array_orcs[0]->strength) - 10)  << " + " << d6 << " = "<< damage << " damage!\n";
                     health_fighter1 -= damage;
  
                     // orc 0 magic
@@ -252,8 +252,8 @@ int main()
                     // death
                     if (health_fighter1 < 1) {
                         std::cout << array_orcs[0]->its_name << " has slain " << array_orcs[1]->its_name  << "!\n";
-                        array_orcs[0]->its_experience += array_orcs[1]->its_health;
-                        array_orcs[0]->its_kills++;
+                        array_orcs[0]->experience += array_orcs[1]->health;
+                        array_orcs[0]->num_kills++;
                         delete array_orcs[1];
                         array_orcs.erase(array_orcs.begin()+1);
                         number_orcs--;
@@ -263,8 +263,8 @@ int main()
                     // orc 1 attack
                     std::cout << array_orcs[1]->its_name << " is attacking. " << array_orcs[1]->its_name << " is swinging his sword, doing ";
                     d6 = rand() % 6 + 1;
-                    damage = (std::max(10, array_orcs[1]->its_strength) - 10) + d6;
-                    std::cout << (std::max(10, array_orcs[1]->its_strength) - 10) << " + " << d6 << " = " << damage << " damage!\n";
+                    damage = (std::max(10, array_orcs[1]->strength) - 10) + d6;
+                    std::cout << (std::max(10, array_orcs[1]->strength) - 10) << " + " << d6 << " = " << damage << " damage!\n";
                     health_fighter0 -= damage;
  
                     // orc 1 magic
@@ -283,8 +283,8 @@ int main()
                     // death
                     if (health_fighter0 < 1) {
                         std::cout << array_orcs[1]->its_name << " has slain " << array_orcs[0]->its_name << "!\n";
-                        array_orcs[1]->its_experience += array_orcs[0]->its_health;
-                        array_orcs[1]->its_kills++;
+                        array_orcs[1]->experience += array_orcs[0]->health;
+                        array_orcs[1]->num_kills++;
                         delete array_orcs[0];
                         array_orcs.erase(array_orcs.begin() + 0);
                         number_orcs--;
@@ -329,11 +329,11 @@ int main()
             int *pointerOrc_strength;
 
             pointerOrc = array_orcs[0];
-            pointerOrc_strength = &array_orcs[0]->its_strength;
+            pointerOrc_strength = &array_orcs[0]->strength;
 
             std::cout << "Accessing data with pointer:\n";
             std::cout << "pointerOrc:" << pointerOrc << "\n";
-            std::cout << "*pointerOrc:" << pointerOrc->its_strength << "\n";
+            std::cout << "*pointerOrc:" << pointerOrc->strength << "\n";
             std::cout << "*pointerOrc_strength:" << *pointerOrc_strength << "\n";
             
             system("pause");

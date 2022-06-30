@@ -1,11 +1,11 @@
 #include "orc.h"
 
 // constructor
-Orc::Orc(const std::string& name, int strength, int dexterity, int endurance) {
+Orc::Orc(const std::string& name, int str, int dex, int end) {
 	its_name = name;
-	its_strength = strength;
-	its_dexterity = dexterity;
-	its_endurance = endurance;
+	strength = str;
+	dexterity = dex;
+	endurance = end;
 
 	// mutation
 	is_mutated = false;
@@ -26,39 +26,39 @@ Orc::~Orc() {
 // copy constructor
 Orc::Orc(const Orc& other_orc) {
 	its_name = other_orc.its_name;
-	its_strength = other_orc.its_strength;
-	its_dexterity = other_orc.its_dexterity;
-	its_endurance = other_orc.its_endurance;
-	its_intelligence = other_orc.its_intelligence;
-	its_charisma = other_orc.its_charisma;
+	strength = other_orc.strength;
+	dexterity = other_orc.dexterity;
+	endurance = other_orc.endurance;
+	intelligence = other_orc.intelligence;
+	charisma = other_orc.charisma;
 
 	// mutation
 	is_mutated = other_orc.is_mutated;
 
 	// health - mana
-	its_health = other_orc.its_health;
-	its_mana = other_orc.its_mana;
+	health = other_orc.health;
+	mana = other_orc.mana;
 }
 
 // class methods
-void Orc::SetIntelligence(int intelligence) {
-	its_intelligence = intelligence;
+void Orc::SetIntelligence(int intel) {
+	intelligence = intel;
 }
 
 int Orc::GetIntelligence() const {
-	return its_intelligence;
+	return intelligence;
 }
 
-void Orc::SetCharisma(int charisma) {
-	its_charisma = charisma;
+void Orc::SetCharisma(int cha) {
+	charisma = cha;
 }
 
 int Orc::GetCharisma() const {
-	return its_charisma;
+	return charisma;
 }
 
 void Orc::SetColor(std::string clr) {
-	its_color = clr;
+	color = clr;
 }
 
 std::string Orc::GetColor() const {
