@@ -34,9 +34,10 @@
 #include "main_functions.h"
 
 // main static variables
-int Weapon::num_weapons = 0;
 unsigned short Orc::num_orcs = 0;
+int Weapon::num_weapons = 0;
 
+// main
 int main()
 {
     Sword kard;
@@ -74,6 +75,9 @@ int main()
 
     std::cout << fegyvertar[2]->GetNumWeapons();
     std::string fegyver_neve = fegyvertar[0]->GetName();
+
+
+
 
     // testing pairs!
     typedef std::pair<Orc*, Orc*> OrcPair;
@@ -182,9 +186,9 @@ int main()
 
         } if (real_choice == 'c')   // List orcs
         {
-            if (array_orcs[0]->GetNumOrcs())
+            if (number_orcs)
             {
-                ListOrcs(array_orcs[0]->GetNumOrcs(), array_orcs);
+                ListOrcs(number_orcs, array_orcs);
             }
             continue;
 

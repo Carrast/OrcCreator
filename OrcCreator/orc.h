@@ -28,7 +28,7 @@ public:
 	void SetColor(std::string clr);
 	std::string GetColor() const;
 
-	void SetIntelligence(int intelligence);
+	void SetIntelligence(int intel);
 	int GetIntelligence() const;
 	void SetCharisma(int cha);
 	int GetCharisma() const;

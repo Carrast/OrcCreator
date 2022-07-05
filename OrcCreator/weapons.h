@@ -70,3 +70,68 @@ public:
 private:
 	double range;
 };
+
+// testing
+template <class T>
+inline bool Kisebb(T a, T b) {
+	if (b > a)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+template <class T>
+inline bool Kissebb(T a, T b) {
+	if (b>a)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+struct HELLO {
+	int x;
+	double y;
+};
+
+// specialised
+template <>
+inline bool Kisebb<HELLO>(HELLO a, HELLO b) {
+	if (b.x > a.x)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+//inline bool Kisebb(int a, int b) {
+//	if (b>a)
+//	{
+//		return true;
+//	}
+//	else
+//	{
+//		return false;
+//	}
+//}
+//
+//inline bool Kisebb(double a, double b) {
+//	if (b>a)
+//	{
+//		return true;
+//	}
+//	else
+//	{
+//		return false;
+//	}
+//}
