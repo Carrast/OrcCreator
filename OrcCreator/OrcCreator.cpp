@@ -56,7 +56,6 @@ int main()
     fegyvertar.push_back(&csatabard);
     fegyvertar.push_back(&ij);
 
-
     int sebzes4 = fegyvertar[0]->Attack();
     int sebzes5 = fegyvertar[1]->Attack();
     int sebzes6 = fegyvertar[2]->Attack();
@@ -75,20 +74,6 @@ int main()
 
     std::cout << fegyvertar[2]->GetNumWeapons();
     std::string fegyver_neve = fegyvertar[0]->GetName();
-
-
-
-
-    // testing pairs!
-    typedef std::pair<Orc*, Orc*> OrcPair;
-    std::vector<OrcPair> torzs;
-
-    OrcPair uj_tipusu_valami;
-    // testing end
-
-
-
-
 
     // ----------------------------------------------------------------
     // ------------------------TRUE MAIN-------------------------------
